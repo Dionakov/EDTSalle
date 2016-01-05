@@ -21,7 +21,7 @@ class ClassRoom {
     }
     
     static function cmpGroup($a, $b) {
-        return strcmp($a->_start, $b->_start);
+        return strcmp($a->_group, $b->_group);
     }
     
     public function getStart() {

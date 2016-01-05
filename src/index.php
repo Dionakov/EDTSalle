@@ -22,6 +22,7 @@ and open the template in the editor.
             require_once 'ListClassRooms.php';         
             $i=0;
             $i=nextTimeSlot($i);
+            $i=nextTimeSlot($i);
             //$i=previousTimeSlot($i);
             $list = new ListClassRooms($i);
             echo('<table>');
