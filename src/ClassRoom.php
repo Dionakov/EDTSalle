@@ -5,6 +5,7 @@ class ClassRoom {
     private $_end;
     private $_room;
     private $_group;
+    private $_teacher;
     public function __construct($start, $end, $room, $group) {
         $this->_start = $start;
         $this->_end = $end;
@@ -24,6 +25,10 @@ class ClassRoom {
         return strcmp($a->_group, $b->_group);
     }
     
+    static function cmpTeacher($a, $b) {
+        return strcmp($a->_teacher, $b->_teacher);
+    }
+    
     public function getStart() {
         return $this->_start;
     }
@@ -37,5 +42,12 @@ class ClassRoom {
     }
     public function getGroup() {
         return $this->_group;
+    }
+    public function getTeacher() {
+        return $this->_teacher;
+    }
+
+    public function setTeacher($teacher) {
+        $this->_teacher = $teacher;
     }
 }

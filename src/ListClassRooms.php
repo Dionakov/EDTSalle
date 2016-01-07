@@ -13,7 +13,8 @@ class ListClassRooms {
                 $locations=preg_split("/(\\\\|\,)/",@$event['LOCATION']);
                 foreach($locations as $location){
                      if(strcmp($location[0],"S")==0 && strcmp(substr($location,0,3),"S04")!=0) {
-                         array_push($this->_usedRooms, new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr($location,0,strlen($location)-1),$group[1]));
+                         array_push($this->_usedRooms, $room=new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr($location,0,strlen($location)-1),$group[1]));
+                         $room->setTeacher($group[2]);
                      }
                 }
             }
@@ -85,8 +86,13 @@ class ListClassRooms {
         return $this->_freeRooms;
     }
     
-    public function getGroups() {
-        usort($this->_usedRooms, "ClassRoom::cmpGroup");
+    public function getGroups($c) {
+        if ($c=='g') {
+            usort($this->_usedRooms, "ClassRoom::cmpGroup");
+        }
+        else if ($c=='t') {
+            usort($this->_usedRooms, "ClassRoom::cmpTeacher");
+        }
         return $this->_usedRooms;
     }
 }
