@@ -44,7 +44,7 @@ and open the template in the editor.
             echo('</table>');
           
             require_once 'ScheduleRoom.php';
-            $scheduleRoom = new ScheduleRoom('S01');
+            $scheduleRoom = new ScheduleRoom('S17');
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
             echo('<tr><th colspan=3>'.$scheduleRoom->getRoom().'</th></tr>');
