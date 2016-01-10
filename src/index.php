@@ -22,8 +22,7 @@ and open the template in the editor.
             require_once 'ListClassRooms.php';         
             $i=0;
             $i=nextTimeSlot($i);
-            $i=nextTimeSlot($i);
-            //$i=previousTimeSlot($i);
+            //previousTimeSlot($i);
             $list = new ListClassRooms($i);
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
@@ -38,8 +37,9 @@ and open the template in the editor.
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
             echo('<tr><th colspan=3>'. $list->getTimeSlot().'</th></tr>');
-            foreach ($list->getGroups() as $value) {
-                echo('<tr><td>'.$value->getGroup().'</td><td>'.$value->getRoom().'</td></tr>');
+            //parametre d'entrée de getGroup() : 't' pour trier en fonction des profs, 'g' pour trier en fonction des groupes
+            foreach ($list->getGroups('g') as $value) {
+                echo('<tr><td>'.$value->getGroup().'</td><td>'.$value->getTeacher().'</td><td>'.$value->getRoom().'</td></tr>');
             }
             echo('</table>');
           
