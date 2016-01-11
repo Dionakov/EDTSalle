@@ -37,7 +37,9 @@ class Calendar {
                         $icsDates[$key]["BEGIN"] = $subValue;
                     } else {
                         $subValueArr = explode(":", $subValue, 2);
-                        $icsDates[$key][$subValueArr[0]] = $subValueArr[1];
+                        if(isset($subValueArr[1])){
+                            $icsDates[$key][$subValueArr[0]] = $subValueArr[1];
+                        }
                     }
                 }
             }

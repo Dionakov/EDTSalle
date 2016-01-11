@@ -12,7 +12,7 @@ class ListClassRooms {
                 $group=preg_split("/(\\\\n)/", @$event['DESCRIPTION']);
                 $locations=preg_split("/(\\\\|\,)/",@$event['LOCATION']);
                 foreach($locations as $location){
-                     if(strcmp($location[0],"S")==0 && strcmp(substr($location,0,3),"S04")!=0) {
+                     if(isset($location[0]) && strcmp($location[0],"S")==0 && strcmp(substr($location,0,3),"S04")!=0) {
                          array_push($this->_usedRooms, $room=new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr($location,0,strlen($location)-1),$group[1]));
                          $room->setTeacher($group[2]);
                      }
