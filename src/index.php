@@ -22,7 +22,23 @@ and open the template in the editor.
             require_once 'ListClassRooms.php';         
             $i=0;
             $i=nextTimeSlot($i);
-            //previousTimeSlot($i);
+            echo($i);
+            $i=nextTimeSlot($i);
+            echo($i);
+            $i=nextTimeSlot($i);
+            echo($i);
+            $i=nextTimeSlot($i);
+            echo($i);
+            $i=nextTimeSlot($i);
+            echo($i);
+           $i=previousTimeSlot($i);
+            echo($i);
+            $i=previousTimeSlot($i);
+            echo($i);
+            $i=previousTimeSlot($i);
+            echo($i);
+            $i=previousTimeSlot($i);
+            echo($i);
             $list = new ListClassRooms($i);
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
@@ -84,9 +100,13 @@ and open the template in the editor.
                     else if(date('D', time()+$i)=="Fri" && (date('H:i',time()+$i)>='18:00' && date('H:i',time()+$i)<'18:30')) {
                         $i-=150*60;
                     }
-                    else if (date('H:i',time()+$i)<'18:00') {
+                    else if (date('H:i',time()+$i)<'20:00') {
                         $i-=120*60;
                     }
+                    else if (date('H:i',time()+$i)>='20:00') {
+                        $i-=150*60;
+                    }
+                    
                 }
                 return $i;
             }
