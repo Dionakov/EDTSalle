@@ -6,6 +6,9 @@
  * and open the template in the editor.
  */
 
+require_once 'Calendar.php';
+require_once 'ClassRoom.php';
+ 
 /**
  * Description of ScheduleRoom
  *
