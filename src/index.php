@@ -90,6 +90,21 @@ and open the template in the editor.
                 }
                 return $i;
             }
+			
+			$j = nextTimeSlot(0);
+			$j = nextTimeSlot($j);
+			$j = nextTimeSlot($j);
+			$j = nextTimeSlot($j);
+			$j = nextTimeSlot($j);
+			$j = nextTimeSlot($j);
+			$k = previousTimeSlot($j);
+			$k = previousTimeSlot($k);
+			$k = previousTimeSlot($k);
+			$k = previousTimeSlot($k);
+			$k = previousTimeSlot($k);
+			$k = previousTimeSlot($k);
+			$k = previousTimeSlot($k);
+			echo "0 => $j => $k";
         ?>
     </body>
 </html>

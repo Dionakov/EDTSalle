@@ -7,15 +7,16 @@ $time = $_POST['time'];
 
 $list = new ListClassRooms($time);
 $result = array(
+	"timeSlot" => $list->getTimeSlot(),
 	"freeRooms" => array(),
 	"occupiedRooms" => array()
 );
 $i = 0;
 foreach($list->getFreeRooms() as $room)
-	$result["freeRooms"][$i++] = $room->getRoom() . " LIBRE";
+	$result["freeRooms"][$i++] = $room->getRoom() . " : LIBRE";
 $i = 0;
 foreach($list->getUsedRooms() as $room)
-	$result["occupiedRooms"][$i++] = $room->getRoom() . " OCCUPEE";
+	$result["occupiedRooms"][$i++] = $room->getRoom() . " : OCCUPEE";
 	
 echo json_encode($result);
 ?>

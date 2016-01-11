@@ -1,5 +1,6 @@
 <?php
 require_once 'ClassRoom.php';
+require_once 'Calendar.php';
 class ListClassRooms {
     private $_usedRooms=array();
     private $_freeRooms=array();
