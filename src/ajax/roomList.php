@@ -1,9 +1,9 @@
 <?php
-if(!isset($_POST['time'])) die("Fatal error : time variable missing");
+//if(!isset($_POST['time'])) die("Fatal error : time variable missing");
 
 require_once("../ListClassRooms.php");
 
-$time = $_POST['time'];
+$time = 7200;
 
 $list = new ListClassRooms($time);
 $result = array(
