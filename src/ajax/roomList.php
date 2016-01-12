@@ -1,9 +1,9 @@
 <?php
-//if(!isset($_POST['time'])) die("Fatal error : time variable missing");
+if(!isset($_POST['time'])) die("Fatal error : time variable missing");
 
 require_once("../ListClassRooms.php");
 
-$time = 7200;
+$time = $_POST['time'];
 
 $list = new ListClassRooms($time);
 $result = array(
@@ -13,10 +13,10 @@ $result = array(
 );
 $i = 0;
 foreach($list->getFreeRooms() as $room)
-	$result["freeRooms"][$i++] = '<a href="room.php?room='.$room->getRoom() . '>'.$room->getRoom() . " : LIBRE</a>";
+	$result["freeRooms"][$i++] = '<a href="room.php?room='.$room->getRoom() . '">'.$room->getRoom() . " : LIBRE</a>";
 $i = 0;
 foreach($list->getUsedRooms() as $room)
-	$result["occupiedRooms"][$i++] = '<a href="room.php?room='.$room->getRoom() . '>'.$room->getRoom() . " : OCCUPEE</a>";
+	$result["occupiedRooms"][$i++] = '<a href="room.php?room='.$room->getRoom() . '">'.$room->getRoom() . " : OCCUPEE</a>";
 	
 echo json_encode($result);
 ?>

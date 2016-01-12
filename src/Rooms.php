@@ -36,36 +36,35 @@ $classRooms = new ListClassRooms($time);
 			
 				$.post(direction ? "ajax/previousTimeSlot.php" : "ajax/nextTimeSlot.php", {time:time}, function(data) { 
 
-					time = parseInt(data);
-					if(time!=0) {
-						$.post("ajax/roomList.php", {time:time}, function(data2) { 
+				time = parseInt(data);
+					$.post("ajax/roomList.php", {time:time}, function(data2) { 
+					
+						data2 = JSON.parse(data2);
+						$("#rooms").animate({right:direction?"-1000px":"1000px", opacity:0.00}, 300, function() {
 						
-							data2 = JSON.parse(data2);
-							$("#rooms").animate({right:direction?"-1000px":"1000px", opacity:0.00}, 300, function() {
-							
-								$("#rooms").css("right", direction?"1000px":"-1000px");
-							
-								$("#rooms").html("");
-								freeRooms = data2.freeRooms;
-								occupiedRooms = data2.occupiedRooms;
-								for(var i = 0; i < freeRooms.length; i++) {
+							$("#rooms").css("right", direction?"1000px":"-1000px");
+						
+							$("#rooms").html("");
+							freeRooms = data2.freeRooms;
+							occupiedRooms = data2.occupiedRooms;
+							for(var i = 0; i < freeRooms.length; i++) {
 								
-									$("#rooms").append("<p>"+freeRooms[i]+"</p>");
-								}
-								for(var i = 0; i < occupiedRooms.length; i++) {
-								
-									$("#rooms").append("<p>"+occupiedRooms[i]+"</p>");
-								}
-								
-								$("#rooms").animate({right:"0px",opacity:1.00}, "slow");
-							});
+								//alert(freeRooms[i]);
+								$("#rooms").append("<p>"+freeRooms[i]+"</p>");
+							}
+							for(var i = 0; i < occupiedRooms.length; i++) {
 							
-							$("#timeSlot").animate({opacity:0.00}, 200, function() {
-								$("#timeSlot").html(data2.timeSlot);
-								$("#timeSlot").animate({opacity:1.00}, 200);
-							});
+								$("#rooms").append("<p>"+occupiedRooms[i]+"</p>");
+							}
+							
+							$("#rooms").animate({right:"0px",opacity:1.00}, "slow");
 						});
-					}
+						
+						$("#timeSlot").animate({opacity:0.00}, 200, function() {
+							$("#timeSlot").html(data2.timeSlot);
+							$("#timeSlot").animate({opacity:1.00}, 200);
+						});
+					});
 				});
 			}
 		
