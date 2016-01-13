@@ -13,12 +13,14 @@ $scheduleRoom = new ScheduleRoom($_GET['room']);
 	<head>
 		<meta charset="utf-8"/>
 		<title>EDT Salles</title>
+		<link rel="stylesheet" type="text/css" href="dist/css/metro-bootstrap.min.css">
+		<link rel="stylesheet" href="styles/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 	
-		<button id="jourPrecedent">Jour précédent</button>
-		<span id="jour"><?=$_GET['room'].' - '.$date?></span>
-		<button id="jourSuivant">Jour suivant</button>
+	<span id="jour"><?=$_GET['room'].' - '.$date?></span>
+
 		
 			<div id="room"style="position:relative;">
 			<?php

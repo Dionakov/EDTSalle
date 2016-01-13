@@ -71,21 +71,25 @@ $lowestTime = $classRooms->getTimeSlot();
 				<div id="rooms">
 					<?php
 						foreach ($classRooms->getFreeRooms() as $value) {
+							echo('<a href="room.php?room='.$value->getRoom().'">');
 							echo(' <div class="tile tile-lime col-md-3 col-xs-12"  >');
 							echo('<h1> '.$value->getRoom(). '</h1>');
 							if($value->getComputer()){
 								echo('<p><img src="computer.png"></p>');
 							}
 							echo('</div>');
+							echo ('</a>');
 
 						}
 						foreach ($classRooms->getUsedRooms() as $value) {
+							echo('<a href="room.php?room='.$value->getRoom().'">');
 							echo(' <div class="tile tile-red col-md-3 col-xs-12"  >');
 							echo('<h1> '.$value->getRoom(). '</h1>');
 								if($value->getComputer()){
 									echo('<p><img src="computer.png"></p>');
 								}
 							echo('</div>');
+							echo('</a>');
 						}
 					?>
 				</div>

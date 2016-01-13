@@ -13,20 +13,20 @@ $result = array(
 );
 $i = 0;
 foreach($list->getFreeRooms() as $room) {
-	$result["freeRooms"][$i] = '<div class="tile tile-lime col-md-3 col-xs-12"  >'. '<h1> '.$room->getRoom(). '</h1>';
+	$result["freeRooms"][$i] = '<a href="room.php?room='.$room->getRoom().'"><div class="tile tile-lime col-md-3 col-xs-12"  >'. '<h1> '.$room->getRoom(). '</h1>';
 	if($room->getComputer()) {
 		$result["freeRooms"][$i] .= '<p><img src="computer.png"></p>';
 	}
-	$result["freeRooms"][$i] .= '</div>';
+	$result["freeRooms"][$i] .= '</div></a>';
 	$i++;
 }
 $i = 0;
 foreach($list->getFreeRooms() as $room) {
-	$result["occupiedRooms"][$i] = '<div class="tile tile-red col-md-3 col-xs-12"  >'. '<h1> '.$room->getRoom(). '</h1>';
+	$result["occupiedRooms"][$i] = '<a href="room.php?room='.$room->getRoom().'"><div class="tile tile-red col-md-3 col-xs-12"  >'. '<h1> '.$room->getRoom(). '</h1>';
 	if($room->getComputer()) {
 		$result["occupiedRooms"][$i] .= '<p><img src="computer.png"></p>';
 	}
-	$result["occupiedRooms"][$i] .= '</div>';
+	$result["occupiedRooms"][$i] .= '</div></a>';
 	$i++;
 }
 echo json_encode($result);
