@@ -6,6 +6,7 @@ class ClassRoom {
     private $_room;
     private $_group;
     private $_teacher;
+    private $_computer;
     public function __construct($start, $end, $room, $group) {
         $this->_start = $start;
         $this->_end = $end;
@@ -49,5 +50,13 @@ class ClassRoom {
 
     public function setTeacher($teacher) {
         $this->_teacher = $teacher;
+    }
+    
+    public function getComputer() {
+        return $this->_computer;
+    }
+
+    public function setComputer($computer) {
+        $this->_computer = $computer;
     }
 }

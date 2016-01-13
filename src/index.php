@@ -21,33 +21,25 @@ and open the template in the editor.
           
             require_once 'ListClassRooms.php';         
             $i=0;
-            $i=nextTimeSlot($i);
-            echo($i);
-            $i=nextTimeSlot($i);
-            echo($i);
-            $i=nextTimeSlot($i);
-            echo($i);
-            $i=nextTimeSlot($i);
-            echo($i);
-            $i=nextTimeSlot($i);
-            echo($i);
-           $i=previousTimeSlot($i);
-            echo($i);
-            $i=previousTimeSlot($i);
-            echo($i);
-            $i=previousTimeSlot($i);
-            echo($i);
-            $i=previousTimeSlot($i);
-            echo($i);
             $list = new ListClassRooms($i);
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
             echo('<tr><th colspan=3>'. $list->getTimeSlot().'</th></tr>');
             foreach ($list->getFreeRooms() as $value) {
-                echo('<tr><td>'.$value->getRoom().'</td><td><img src="green.jpg"></td></tr>');
+                if ($value->getComputer()==true) {
+                    echo('<tr><td>'.$value->getRoom().'</td><td><img src="computer.jpg"></td><td><img src="green.jpg"></td></tr>');
+                }
+                else {
+                    echo('<tr><td>'.$value->getRoom().'</td><td><img src="green.jpg"></td></tr>');
+                }
             }
             foreach ($list->getUsedRooms() as $value) {                
-                echo('<tr><td>'.$value->getRoom().'</td><td><img src="red.jpg"></td></tr>');
+                if ($value->getComputer()==true) {
+                    echo('<tr><td>'.$value->getRoom().'</td><td><img src="computer.jpg"></td><td><img src="red.jpg"></td></tr>');
+                }
+                else {
+                    echo('<tr><td>'.$value->getRoom().'</td><td><img src="red.jpg"></td></tr>');
+                }
             }
             
             echo('<table>');
@@ -63,7 +55,7 @@ and open the template in the editor.
             $scheduleRoom = new ScheduleRoom('S12');
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
-            echo('<tr><th colspan=3>'.$scheduleRoom->getRoom().'</th></tr>');
+            echo('<tr><th colspan=3>'.$scheduleRoom->getRoom().'</th><th><img src="computer.jpg"></th></tr>');
             $last='08:00';
             foreach ($scheduleRoom->getSchedule() as $value) {
                 if ($last!=$value->getStart()){

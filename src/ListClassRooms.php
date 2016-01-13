@@ -4,7 +4,8 @@ require_once 'Calendar.php';
 class ListClassRooms {
     private $_usedRooms=array();
     private $_freeRooms=array();
-    private $_allRooms = array("S01", "S03", "S10", "S11", "S13", "S14", "S15", "S16", "S17", "S18 - TP Réseau", "S21", "S22", "S23 - TP réseau", "S24", "S25-Salle de réunion", "S26");
+    private $_allRooms = array("S01", "S03", "S10", "S11", "S12", "S13", "S14", "S15", "S16", "S17", "S18 - TP Réseau", "S21", "S22", "S23 - TP réseau", "S24", "S25-Salle de réunion", "S26");
+    private $_computerRooms=array("S01", "03", "S13", "S14", "S16", "S17", "S18 - TP Réseau", "S22", "S23 - TP réseau", "S24");
     private $_timeSlot;
     private $_empty;
     public function __construct($i) {
@@ -14,8 +15,13 @@ class ListClassRooms {
                 $locations=preg_split("/(\\\\|\,)/",@$event['LOCATION']);
                 foreach($locations as $location){
                      if(isset($location[0]) && strcmp($location[0],"S")==0 && strcmp(substr($location,0,3),"S04")!=0) {
-                         array_push($this->_usedRooms, $room=new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr($location,0,strlen($location)-1),$group[1]));
-                         $room->setTeacher($group[2]);
+                        array_push($this->_usedRooms, $room=new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr($location,0,strlen($location)-1),$group[1]));
+                        if($group[2][0]!="(") {
+                           $room->setTeacher($group[2]);
+                        }
+                        if(in_array(substr($location,0,strlen($location)-1), $this->_computerRooms)) {
+                            $room->setComputer(true);
+                        }
                      }
                 }
             }
@@ -63,8 +69,11 @@ class ListClassRooms {
             }
         }
         
-        foreach ($this->_allRooms as $room) {
-            array_push($this->_freeRooms, new ClassRoom(substr($this->_timeSlot,0,5), substr($this->_timeSlot,8,5),$room, null));
+        foreach ($this->_allRooms as $location) {
+            array_push($this->_freeRooms, $room=new ClassRoom(substr($this->_timeSlot,0,5), substr($this->_timeSlot,8,5),$location, null));
+            if(in_array($location, $this->_computerRooms)) {
+                $room->setComputer(true);
+            }
         }
         
         $this->_freeRooms=array_udiff($this->_freeRooms, $this->_usedRooms, "ClassRoom::cmpRoom");
