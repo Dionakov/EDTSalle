@@ -18,30 +18,34 @@ $scheduleRoom = new ScheduleRoom($_GET['room']);
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-	
-	<span id="jour"><?=$_GET['room'].' - '.$date?></span>
-
-		
+	<p>INSERER LE MENU ICI</p>
+	<center><span id="jour"><?=$_GET['room'].' - '.$date?></span></center>
+	<div class='grid'>
+		<div class="row col-md-12">
 			<div id="room"style="position:relative;">
 			<?php
 			$last='08:00';
 			foreach($scheduleRoom->getSchedule() as $schedule) {
-				if($last!=$schedule->getStart()) 
-					echo "<p>".$last." -> ".$schedule->getStart()." : LIBRE</p>";
-				echo "<p>".$schedule->getStart()." -> ".$schedule->getEnd()." : OCCUPEE</p>";
+				if($last!=$schedule->getStart()) {
+					?><div class="tile tile-lime col-xs-6 col-xs-offset-3"  ><?php
+					echo "<h1>".$last." - ".$schedule->getStart()."</h1></div>";
+				}
+				?><div class="tile tile-red col-xs-6 col-xs-offset-3"  ><?php
+				echo "<h1>".$schedule->getStart()." - ".$schedule->getEnd()."</h1></div>";
 				$last =$schedule->getEnd();
 			}
 			if($last != '21:00') {
 			
-				echo "<p>".$last." -> 21:00 : LIBRE</p>";
+				echo "<div class=\"tile tile-lime col-xs-6 col-xs-offset-3\"  ><h1>".$last." - 21:00</h1></div>";
 			}
 			?>
+			</div>
 		</div>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script type="text/javascript">
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
 		
-			
-		</script>
+	</script>
 	</body>
 </html>

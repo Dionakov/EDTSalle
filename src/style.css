@@ -58,7 +58,7 @@ img {
 	padding-right: 0;
 
 }
-.grid .row .col-md-3
+.grid .row .col-md-3, .grid .row .col-xs-6
 {
 	min-height: 150px;
 }
@@ -70,4 +70,9 @@ img {
 #rooms {
 
 	position:relative;
+}
+
+#jour {
+
+	margin-bottom:30px;
 }
