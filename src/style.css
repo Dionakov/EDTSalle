@@ -38,3 +38,31 @@ img {
     width: 1.5em;
     height: 1.5em;
 }
+
+#tile_horaire_precedent>img, #tile_horaire_suivant>img {
+
+	width:100%;
+	height:55px;
+}
+
+#tile_horaire_precedent, #tile_horaire_suivant {
+
+	padding:10px;
+	margin:0;
+}
+
+.grid .row {
+	background-color: transparent;
+	border: 0;
+
+	padding-right: 0;
+
+}
+.grid .row .col-md-3
+{
+	min-height: 150px;
+}
+.grid .row .col-md-6
+{
+	min-height: 300px;
+}

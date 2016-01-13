@@ -28,21 +28,67 @@ $classRooms = new ListClassRooms($time);
 	</head>
 	<body>
 		
-		<p>
-		<button id="horairePrecedent" class="btn-group btn-group-justified" >Horaire précédent</button>
-		<span id="timeSlot" ><?=$classRooms->getTimeSlot()?></span>
-		<button id="horaireSuivant" class="btn-group btn-group-justified" >Horaire suivant</button> 
+		<!--<button id="horairePrecedent" class="btn-group btn-group-justified" >Horaire précédent</button>-->
+		<span hidden id="timeSlot" ><?=$classRooms->getTimeSlot()?></span>
+		<!--<button  id="horaireSuivant" class="btn-group btn-group-justified" >Horaire suivant</button> -->
 		
-			<div id="rooms"style="position:relative;">
-			<?php
-			foreach($classRooms->getFreeRooms() as $room) {
-				echo "<p><a href=\"room.php?room=".$room->getRoom()."\">".$room->getRoom()." : LIBRE</a></p>";
-			}
-			foreach($classRooms->getUsedRooms() as $room) {
-				echo "<p><a href=\"room.php?room=".$room->getRoom()."\">".$room->getRoom()." : OCCUPEE</a></p>";
-			}
-			?>
+		<div class='grid'>
+			<div class="row col-md-12">
+				<div class="tile tile-clouds col-md-4 col-xs-12"  >
+					<a href="" >
+						<h1>Emploi du temps</h1>
+					</a>
+				</div>
+
+				<div class="tile tile-emerald col-md-4 col-xs-12">
+					<a href="prof.php">
+						<h1>Espace prof</h1>
+					</a>
+				</div>     
+
+				<div class="tile tile-turquoise col-md-4 col-xs-12 "  >
+					<a href="">
+						<h1>Espace etudiant</h1>
+					</a>
+				</div>
+			</div>
+			<div class="row col-md-12">
+				<div id="tile_horaire_precedent" class="tile tile-turquoise col-md-2 col-xs-2">
+					<img src="arrow_left.png" alt="horaire précédent"/>
+				</div>
+				<div class="tile tile-emerald col-md-8 col-xs-8">
+					<p>Horaire</p>
+				</div>
+				<div id="tile_horaire_suivant" class="tile tile-turquoise col-md-2 col-xs-2">
+					<img src="arrow_right.png" alt="horaire suivant"/>
+				</div>
+			</div>
 		</div>
+		
+		<div class="grid">
+			<div class="row col-md-12">
+				<div id="rooms">
+					<?php
+						foreach ($classRooms->getFreeRooms() as $value) {
+							echo(' <div class="tile tile-lime col-md-3 col-xs-12"  >');
+							echo('<h1> '.$value->getRoom(). '</h1>');
+							if($value->getComputer()){
+								echo('<p><img src="computer.png"></p>');
+							}
+							echo('</div>');
+
+						}
+						foreach ($classRooms->getUsedRooms() as $value) {
+							echo(' <div class="tile tile-red col-md-3 col-xs-12"  >');
+							echo('<h1> '.$value->getRoom(). '</h1>');
+								if($value->getComputer()){
+									echo('<p><img src="computer.png"></p>');
+								}
+							echo('</div>');
+						}
+					?>
+				</div>
+
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript">
@@ -64,12 +110,12 @@ $classRooms = new ListClassRooms($time);
 							occupiedRooms = data2.occupiedRooms;
 							for(var i = 0; i < freeRooms.length; i++) {
 								
-								//alert(freeRooms[i]);
-								$("#rooms").append("<p>"+freeRooms[i]+"</p>");
+								
+								$("#rooms").append(freeRooms[i]);
 							}
 							for(var i = 0; i < occupiedRooms.length; i++) {
 							
-								$("#rooms").append("<p>"+occupiedRooms[i]+"</p>");
+								$("#rooms").append(occupiedRooms[i]);
 							}
 							
 							$("#rooms").animate({right:"0px",opacity:1.00}, "slow");
@@ -86,7 +132,7 @@ $classRooms = new ListClassRooms($time);
 			var time = 0;
 			$(document).ready(function() {
 				
-				$("#horairePrecedent").click(function() {
+				$("#tile_horaire_precedent").click(function() {
 					
 					refreshData(true);
 				});
@@ -98,7 +144,7 @@ $classRooms = new ListClassRooms($time);
 				$("body").on("swiperight", function() {
 					refreshData(true);
 				});
-				$("#horaireSuivant").click(function() {
+				$("#tile_horaire_suivant").click(function() {
 				
 					refreshData(false);
 				});
