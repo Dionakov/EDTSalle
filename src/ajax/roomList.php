@@ -13,19 +13,21 @@ $result = array(
 );
 $i = 0;
 foreach($list->getFreeRooms() as $room) {
-	$result["freeRooms"][$i++] = '<div class="tile tile-lime col-md-3 col-xs-12"  >'. '<h1> '.$value->getRoom(). '</h1>';
+	$result["freeRooms"][$i] = '<div class="tile tile-lime col-md-3 col-xs-12"  >'. '<h1> '.$room->getRoom(). '</h1>';
 	if($room->getComputer()) {
 		$result["freeRooms"][$i] .= '<p><img src="computer.png"></p>';
 	}
 	$result["freeRooms"][$i] .= '</div>';
+	$i++;
 }
 $i = 0;
 foreach($list->getFreeRooms() as $room) {
-	$result["occupiedRooms"][$i++] = '<div class="tile tile-red col-md-3 col-xs-12"  >'. '<h1> '.$value->getRoom(). '</h1>';
+	$result["occupiedRooms"][$i] = '<div class="tile tile-red col-md-3 col-xs-12"  >'. '<h1> '.$room->getRoom(). '</h1>';
 	if($room->getComputer()) {
 		$result["occupiedRooms"][$i] .= '<p><img src="computer.png"></p>';
 	}
 	$result["occupiedRooms"][$i] .= '</div>';
+	$i++;
 }
 echo json_encode($result);
 ?>

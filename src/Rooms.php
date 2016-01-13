@@ -18,6 +18,7 @@ require_once("ListClassRooms.php");
 $time = 0;
 
 $classRooms = new ListClassRooms($time);
+$lowestTime = $classRooms->getTimeSlot();
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +58,7 @@ $classRooms = new ListClassRooms($time);
 					<img src="arrow_left.png" alt="horaire précédent"/>
 				</div>
 				<div class="tile tile-emerald col-md-8 col-xs-8">
-					<p>Horaire</p>
+					<p id="horaire"><?=$classRooms->getTimeSlot()?></p>
 				</div>
 				<div id="tile_horaire_suivant" class="tile tile-turquoise col-md-2 col-xs-2">
 					<img src="arrow_right.png" alt="horaire suivant"/>
@@ -99,7 +100,7 @@ $classRooms = new ListClassRooms($time);
 
 				time = parseInt(data);
 					$.post("ajax/roomList.php", {time:time}, function(data2) { 
-					
+						
 						data2 = JSON.parse(data2);
 						$("#rooms").animate({right:direction?"-1000px":"1000px", opacity:0.00}, 300, function() {
 						
@@ -121,9 +122,9 @@ $classRooms = new ListClassRooms($time);
 							$("#rooms").animate({right:"0px",opacity:1.00}, "slow");
 						});
 						
-						$("#timeSlot").animate({opacity:0.00}, 200, function() {
-							$("#timeSlot").html(data2.timeSlot);
-							$("#timeSlot").animate({opacity:1.00}, 200);
+						$("#horaire").animate({opacity:0.00}, 200, function() {
+							$("#horaire").html(data2.timeSlot);
+							$("#horaire").animate({opacity:1.00}, 200);
 						});
 					});
 				});
