@@ -15,12 +15,7 @@ class ListClassRooms {
                 $locations=preg_split("/(\\\\|\,)/",@$event['LOCATION']);
                 foreach($locations as $location){
                      if(isset($location[0]) && strcmp($location[0],"S")==0 && strcmp(substr($location,0,3),"S04")!=0) {
-                            if (strcmp(substr($location,0,3),"S22")==0) {
-                                array_push($this->_usedRooms, $room=new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr($location,0,strlen($location)),$group[1]));
-                            }
-                            else {
-                                array_push($this->_usedRooms, $room=new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr($location,0,strlen($location)-1),$group[1]));
-                            }
+                        array_push($this->_usedRooms, $room=new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr($location,0,strlen($location)-1),$group[1]));
                         if($group[2][0]!="(") {
                            $room->setTeacher($group[2]);
                         }

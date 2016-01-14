@@ -29,22 +29,40 @@ $lowestTime = $classRooms->getTimeSlot();
 	</head>
 	<body>
 		
-		
+		<!--<button id="horairePrecedent" class="btn-group btn-group-justified" >Horaire précédent</button>-->
 		<span hidden id="timeSlot" ><?=$classRooms->getTimeSlot()?></span>
+		<!--<button  id="horaireSuivant" class="btn-group btn-group-justified" >Horaire suivant</button> -->
 		
-		<ul class="nav nav-pills">
-				  <li class="active">
-					  <a href="#">Etudiant</a></li>
-					  <li><a href="#">Profs</a></li>
-					  <li><a href="#">Salles</a>
-				  </li>
-		</ul>
-		
-			<div class="btn-group">
-  				<button type="button" id="tile_horaire_precedent" class="btn btn-default" >Horaire précedent</button>
-  				<button type="button" id="tile_horaire_suivant" class="btn btn-default"  >Horaire suivant</button>
+		<div class='grid'>
+			<div class="row col-md-12">
+				<div class="tile tile-clouds col-md-4 col-xs-12"  >
+					<a href="" >
+						<h1>Emploi du temps</h1>
+					</a>
+				</div>
+
+				<div class="tile tile-emerald col-md-4 col-xs-12">
+					<a href="prof.php">
+						<h1>Espace prof</h1>
+					</a>
+				</div>     
+
+				<div class="tile tile-turquoise col-md-4 col-xs-12 "  >
+					<a href="">
+						<h1>Espace etudiant</h1>
+					</a>
+				</div>
+			</div>
+			<div class="row col-md-12">
+				<div id="tile_horaire_precedent" class="tile tile-turquoise col-md-2 col-xs-2">
+					<img src="arrow_left.png" alt="horaire précédent"/>
+				</div>
+				<div class="tile tile-emerald col-md-8 col-xs-8">
 					<p id="horaire"><?=$classRooms->getTimeSlot()?></p>
-				
+				</div>
+				<div id="tile_horaire_suivant" class="tile tile-turquoise col-md-2 col-xs-2">
+					<img src="arrow_right.png" alt="horaire suivant"/>
+				</div>
 			</div>
 		</div>
 		
@@ -75,8 +93,6 @@ $lowestTime = $classRooms->getTimeSlot();
 						}
 					?>
 				</div>
-			</div>
-		</div>
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -139,24 +155,5 @@ $lowestTime = $classRooms->getTimeSlot();
 				});
 			});
 		</script>
-
-	<style>
-	  .grid .row {
-	    background-color: transparent;
-	    border: 0;
-	    height: 50px;
-	    padding-right: 0;
-	    
-	  }
-	  .grid .row .col-md-3
-	    {
-	        min-height: 150px;
-	    }
-	  .grid .row .col-md-6
-	    {
-	        min-height: 300px;
-	    }
-
-	</style>
 	</body>
 </html>
