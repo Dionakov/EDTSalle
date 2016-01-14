@@ -1,0 +1,78 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 6, 2016, 2:45:08 PM
+    Author     : Emile Bex
+*/
+
+@font-face {
+    font-family: "Ubuntu";
+    src: url(Ubuntu-R.ttf) format("truetype");
+}
+
+body {
+    font-family: "Ubuntu";
+    font-size: 14pt;
+}
+
+table {
+    text-align: center;
+    width: 25%;
+    border-collapse: separate;
+    border-spacing: 0 .5em;
+}
+
+tr {
+    outline-style: solid;
+}
+
+td {
+    padding: 5% 0%; 
+    margin: 5%;
+}
+
+img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+#tile_horaire_precedent>img, #tile_horaire_suivant>img {
+
+	width:100%;
+	height:55px;
+}
+
+#tile_horaire_precedent, #tile_horaire_suivant {
+
+	padding:10px;
+	margin:0;
+}
+
+.grid .row {
+	background-color: transparent;
+	border: 0;
+
+	padding-right: 0;
+
+}
+.grid .row .col-md-3, .grid .row .col-xs-6
+{
+	min-height: 150px;
+}
+.grid .row .col-md-6
+{
+	min-height: 300px;
+}
+
+#rooms {
+
+	position:relative;
+}
+
+#jour {
+
+	margin-bottom:30px;
+}

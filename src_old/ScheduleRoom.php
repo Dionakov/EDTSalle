@@ -22,7 +22,10 @@ class ScheduleRoom {
         foreach (Calendar::getRoomSchedule($room) as $event) {
             if(@$event['DTSTART']!=0) {
                 $group=preg_split("/(\\\\n)/", @$event['DESCRIPTION']);
-                array_push($this->_schedule, new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr(@$event['LOCATION'],0,3),$group)); 
+                array_push($this->_schedule, $room= new ClassRoom(date('H:i', strtotime(substr(@$event['DTSTART'], 9,6))+3600),date('H:i',strtotime(substr(@$event['DTEND'], 9,6))+3600),substr(@$event['LOCATION'],0,3),$group[1]));
+                if($group[2][0]!="(") {
+                   $room->setTeacher($group[2]);
+                }
             }
         }
         usort($this->_schedule, "ClassRoom::cmpTime");

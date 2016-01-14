@@ -18,15 +18,7 @@ $scheduleRoom = new ScheduleRoom($_GET['room']);
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-	<p>
-		<ul class="nav nav-pills">
-				  <li class="active">
-					  <a href="rooms.php">Etudiant</a></li>
-					  <li><a href="#">Profs</a></li>
-					  <li><a href="#">Salles</a>
-				  </li>
-		</ul>
-	</p>
+	<p>INSERER LE MENU ICI</p>
 	<center><span id="jour"><?=$_GET['room'].' - '.$date?></span></center>
 	<div class='grid'>
 		<div class="row col-md-12">
@@ -36,7 +28,10 @@ $scheduleRoom = new ScheduleRoom($_GET['room']);
 			foreach($scheduleRoom->getSchedule() as $schedule) {
 				if($last!=$schedule->getStart()) {
 					?><div class="tile tile-lime col-xs-6 col-xs-offset-3"  ><?php
-					echo "<h1>".$last." - ".$schedule->getStart()."</h1></div>";
+					echo "<h1>".$last." - ".$schedule->getStart()."</h1>";
+                                        //echo "<h2>".$schedule->getGroup()."</h2>";
+                                        //echo "<h2>".$schedule->getTeacher()."</h2>";    
+                                        echo "</div>";
 				}
 				?><div class="tile tile-red col-xs-6 col-xs-offset-3"  ><?php
 				echo "<h1>".$schedule->getStart()." - ".$schedule->getEnd()."</h1></div>";
@@ -56,6 +51,4 @@ $scheduleRoom = new ScheduleRoom($_GET['room']);
 		
 	</script>
 	</body>
-
-
 </html>

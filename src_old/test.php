@@ -95,21 +95,6 @@
 
 
 	<style>
-  .grid .row {
-    background-color: transparent;
-    border: 0;
-    height: 50px;
-    padding-right: 0;
-    
-  }
-  .grid .row .col-md-3
-    {
-        min-height: 150px;
-    }
-  .grid .row .col-md-6
-    {
-        min-height: 300px;
-    }
 
 	</style>
   </head>  
@@ -136,7 +121,6 @@
               <h1>Espace etudiant</h1>
             </a>
           </div>
-
       </div>
 </div>
 

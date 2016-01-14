@@ -8,7 +8,7 @@
 
 class Calendar {
     public static function getRoomSchedule($room) {
-        $ressources=array('S10'=>127,'S11'=>128,'S23'=>129,'S15'=>130,'S26'=>133,'S01'=>118,'S03'=>119,'S13'=>120,'S14'=>121,'S16'=>122,'S17'=>123,'S22'=>135,'S24'=>136,'S18'=>126,'S25'=>131,'S12'=>132,'S21'=>134);
+        $ressources=array('S10'=>127,'S11'=>128,'S23 - TP réseau'=>129,'S15'=>130,'S26'=>133,'S01'=>118,'S03'=>119,'S13'=>120,'S14'=>121,'S16'=>122,'S17'=>123,'S22'=>135,'S24'=>136,'S18 - TP Réseau'=>126,'S25-Salle de réunion'=>131,'S12'=>132,'S21'=>134);
         $url="http://adelb.univ-lyon1.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?resources=".$ressources[$room]
                 . "&projectId=1&calType=ical&firstDate="
                 . date("Y-m-d"). "&lastDate=" . date("Y-m-d");
