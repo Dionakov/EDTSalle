@@ -5,7 +5,7 @@ class ListClassRooms {
     private $_usedRooms=array();
     private $_freeRooms=array();
     private $_allRooms = array("S01", "S03", "S10", "S11", "S12", "S13", "S14", "S15", "S16", "S17", "S18 - TP Réseau", "S21", "S22", "S23 - TP réseau", "S24", "S25-Salle de réunion", "S26");
-    private $_computerRooms=array("S01", "03", "S13", "S14", "S16", "S17", "S18 - TP Réseau", "S22", "S23 - TP réseau", "S24");
+    private $_computerRooms=array("S01", "S03", "S13", "S14", "S16", "S17", "S18 - TP Réseau", "S22", "S23 - TP réseau", "S24");
     private $_timeSlot;
     private $_empty;
     public function __construct($i) {
