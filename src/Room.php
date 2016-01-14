@@ -28,9 +28,7 @@ $scheduleRoom = new ScheduleRoom($_GET['room']);
 			foreach($scheduleRoom->getSchedule() as $schedule) {
 				if($last!=$schedule->getStart()) {
 					?><div class="tile tile-lime col-xs-6 col-xs-offset-3"  ><?php
-					echo "<h1>".$last." - ".$schedule->getStart()."</h1>";
-                                        //echo "<h2>".$schedule->getGroup()."</h2>";
-                                        //echo "<h2>".$schedule->getTeacher()."</h2>";    
+					echo "<h1>".$last." - ".$schedule->getStart()."</h1>";  
                                         echo "</div>";
 				}
 				?><div class="tile tile-red col-xs-6 col-xs-offset-3"  ><?php
