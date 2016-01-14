@@ -22,6 +22,7 @@ and open the template in the editor.
             require_once 'ListClassRooms.php';         
             $i=0;
             $i=nextTimeSlot($i);
+            //$i=previousTimeSlot($i);
             $list = new ListClassRooms($i);
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
@@ -73,16 +74,18 @@ and open the template in the editor.
                 return $i;
             }
             
-            //Permet d'avancer de reculer d'un créneau lors du swipe ou de l'appuie sur le bouton "Creneau précédent" (pas encore fonctionnel)
+            //Permet de reculer d'un créneau lors du swipe ou de l'appuie sur le bouton "Creneau précédent" (pas encore fonctionnel)
             function previousTimeSlot($i) {
-                if(date('D', time()+$i)=="Fri" && (date('H:i',time()+$i)>='11:30' && date('H:i',time()+$i)<'12:00')) {
-                    $i+=90*60;
-                }
-                else if(date('D', time()+$i)=="Fri" && (date('H:i',time()+$i)>='15:30' && date('H:i',time()+$i)<'16:00')) {
-                    $i+=150*60;
-                }
-                else if (date('H:i',time()+$i)<'18:00') {
-                    $i+=120*60;
+                if ($i!=0) {
+                    if(date('D', time()+$i)=="Fri" && (date('H:i',time()+$i)>='13:00' && date('H:i',time()+$i)<'13:30')) {
+                        $i-=90*60;
+                    }
+                    else if(date('D', time()+$i)=="Fri" && (date('H:i',time()+$i)>='18:00' && date('H:i',time()+$i)<'18:30')) {
+                        $i-=150*60;
+                    }
+                    else if (date('H:i',time()+$i)<'18:00') {
+                        $i-=120*60;
+                    }
                 }
                 return $i;
             }
