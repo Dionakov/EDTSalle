@@ -21,13 +21,13 @@ $scheduleRoom = new ScheduleRoom($_GET['room']);
 	<p>
 		<ul class="nav nav-pills">
 				  <li class="active">
-					  <a href="rooms.php">Etudiant</a></li>
+					  <a href="rooms.php">Salles Libres</a></li>
 					  <li><a href="#">Profs</a></li>
-					  <li><a href="#">Salles</a>
 				  </li>
 		</ul>
 	</p>
-	<center><span id="jour"><?=$_GET['room'].' - '.$date?></span></center>
+        <center><span id="jour"><?=$date?></span></center>
+	<center><span id="salle"><?=$_GET['room']?></span></center>
 	<div class='grid'>
 		<div class="row col-md-12">
 			<div id="room"style="position:relative;">

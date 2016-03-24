@@ -74,5 +74,23 @@ img {
 
 #jour {
 
-	margin-bottom:30px;
+	margin-bottom:50px;
+}
+
+#salle {
+    margin-bottom: 30px;
+    font-size: 22pt;
+    font-weight: bolder;
+}
+
+#horaire {
+    text-align: center;
+    font-size: 22pt;
+    font-weight: bolder;
+}
+
+@media (max-width:1200px) {
+    .tile h1 {
+        font-size: 34px;
+    }
 }

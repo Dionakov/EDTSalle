@@ -28,27 +28,27 @@ $lowestTime = $classRooms->getTimeSlot();
 		<title>EDT Salles</title>
 	</head>
 	<body>
-		
-		
+            <div class="container">
+              
 		<span hidden id="timeSlot" ><?=$classRooms->getTimeSlot()?></span>
 		
-		<ul class="nav nav-pills">
+		<ul class="col-md-12 nav nav-pills">
 				  <li class="active">
-					  <a href="#">Etudiant</a></li>
-					  <li><a href="#">Profs</a></li>
-					  <li><a href="#">Salles</a>
+					  <a href="#">Salles Libres</a></li>
+					  <li><a href="#">Profs</a>
 				  </li>
 		</ul>
-		
-			<div class="btn-group">
+            
+			<div class="btn-group col-md-12">
   				<button type="button" id="tile_horaire_precedent" class="btn btn-default" >Horaire précedent</button>
   				<button type="button" id="tile_horaire_suivant" class="btn btn-default"  >Horaire suivant</button>
-					<p id="horaire"><?=$classRooms->getTimeSlot()?></p>
+                        </div>
+					<div id="horaire" class="col-md-12"><?=$classRooms->getTimeSlot()?></div>
 				
-			</div>
-		</div>
+               
+            </div>
+            <div class="grid">
 		
-		<div class="grid">
 			<div class="row col-md-12">
 				<div id="rooms">
 					<?php

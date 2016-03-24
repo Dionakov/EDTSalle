@@ -9,6 +9,7 @@ class ListClassRooms {
     private $_timeSlot;
     private $_empty;
     public function __construct($i) {
+        date_default_timezone_set("Europe/Paris");
         foreach (Calendar::getDaySchedule() as $event) {
             if(time()+$i>=strtotime(substr(@$event['DTSTART'], 9,6))+3600 && time()+$i<strtotime(substr(@$event['DTEND'], 9,6))+3600) {
                 $group=preg_split("/(\\\\n)/", @$event['DESCRIPTION']);
