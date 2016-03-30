@@ -35,8 +35,8 @@ $lowestTime = $classRooms->getTimeSlot();
                 <div class="col-md-12 text-center">
 		<ul class="nav nav-pills pills-center">
 				  <li class="active">
-					  <a href="#">Salles Libres</a></li>
-					  <li><a href="#">Profs</a>
+                                      <a href="Rooms.php">Salles Libres</a></li>
+                                  <li><a href="Teacher.php">Profs</a>
 				  </li>
 		</ul>
                 </div>

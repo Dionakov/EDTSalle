@@ -26,7 +26,7 @@ $scheduleRoom = new ScheduleRoom($_GET['room']);
 		<ul class="nav nav-pills pills-center">
 				  <li>
                                       <a href="Rooms.php">Salles Libres</a></li>
-					  <li><a href="#">Profs</a>
+                                  <li><a href="Teacher.php">Profs</a>
 				  </li>
 		</ul>
                 </div>
