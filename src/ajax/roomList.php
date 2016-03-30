@@ -13,7 +13,7 @@ $result = array(
 );
 $i = 0;
 foreach($list->getFreeRooms() as $room) {
-	$result["freeRooms"][$i] = '<a href="room.php?room='.$room->getRoomNum().'"><div class="tile tile-lime col-md-3 col-xs-8 col-xs-offset-2"  >'. '<h1> '.$room->getRoomNum(). '</h1>';
+	$result["freeRooms"][$i] = '<a href="room.php?room='.$room->getRoomNum().'"><div class="tile tile-lime col-md-3 col-xs-12"  >'. '<h1> '.$room->getRoomNum(). '</h1>';
 	if($room->getComputer()) {
 		$result["freeRooms"][$i] .= '<p><img src="computer.png"></p>';
 	}
@@ -22,7 +22,7 @@ foreach($list->getFreeRooms() as $room) {
 }
 $i = 0;
 foreach($list->getFreeRooms() as $room) {
-	$result["occupiedRooms"][$i] = '<a href="room.php?room='.$room->getRoomNum().'"><div class="tile tile-red col-md-3 col-xs-8 col-xs-offset-2"  >'. '<h1> '.$room->getRoomNum(). '</h1>';
+	$result["occupiedRooms"][$i] = '<a href="room.php?room='.$room->getRoomNum().'"><div class="tile tile-red col-md-3 col-xs-12"  >'. '<h1> '.$room->getRoomNum(). '</h1>';
 	if($room->getComputer()) {
 		$result["occupiedRooms"][$i] .= '<p><img src="computer.png"></p>';
 	}
