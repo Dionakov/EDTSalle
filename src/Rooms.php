@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="dist/css/metro-bootstrap.min.css">
     <link rel="stylesheet" href="styles/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="agenda.png">
 </head>
 
 <?php 
@@ -30,21 +31,29 @@ $lowestTime = $classRooms->getTimeSlot();
 	<body>
             <div class="container">
               
-		<span hidden id="timeSlot" ><?=$classRooms->getTimeSlot()?></span>
-		
-		<ul class="col-md-12 nav nav-pills">
+		<div class="row">
+                <div class="col-md-12 text-center">
+		<ul class="nav nav-pills pills-center">
 				  <li class="active">
 					  <a href="#">Salles Libres</a></li>
 					  <li><a href="#">Profs</a>
 				  </li>
 		</ul>
-            
-			<div class="btn-group col-md-12">
+                </div>
+                </div>
+                <div class="row">
+                        <div class="col-md-12 text-center">
+			<div class="btn-group text-center">
   				<button type="button" id="tile_horaire_precedent" class="btn btn-default" >Horaire précedent</button>
   				<button type="button" id="tile_horaire_suivant" class="btn btn-default"  >Horaire suivant</button>
                         </div>
-					<div id="horaire" class="col-md-12"><?=$classRooms->getTimeSlot()?></div>
-				
+                        </div>
+			
+                        
+                </div>
+                <div class="row">
+                <div id="horaire" class="col-md-12"><?=$classRooms->getTimeSlot()?></div>
+                </div>
                
             </div>
             <div class="grid">
@@ -53,8 +62,8 @@ $lowestTime = $classRooms->getTimeSlot();
 				<div id="rooms">
 					<?php
 						foreach ($classRooms->getFreeRooms() as $value) {
-							echo('<a href="room.php?room='.$value->getRoom().'">');
-							echo(' <div class="tile tile-lime col-md-3 col-xs-12"  >');
+							echo('<a href="Room.php?room='.$value->getRoom().'">');
+							echo(' <div class="tile tile-lime col-md-3 col-xs-8 col-xs-offset-2"  >');
 							echo('<h1> '.$value->getRoom(). '</h1>');
 							if($value->getComputer()){
 								echo('<p><img src="computer.png"></p>');
@@ -64,8 +73,8 @@ $lowestTime = $classRooms->getTimeSlot();
 
 						}
 						foreach ($classRooms->getUsedRooms() as $value) {
-							echo('<a href="room.php?room='.$value->getRoom().'">');
-							echo(' <div class="tile tile-red col-md-3 col-xs-12"  >');
+							echo('<a href="Room.php?room='.$value->getRoom().'">');
+							echo(' <div class="tile tile-red col-md-3 col-xs-8 col-xs-offset-2"  >');
 							echo('<h1> '.$value->getRoom(). '</h1>');
 								if($value->getComputer()){
 									echo('<p><img src="computer.png"></p>');

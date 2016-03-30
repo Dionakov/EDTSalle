@@ -29,17 +29,17 @@
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
             echo('<tr><th colspan=3>'. $list->getTimeSlot().'</th></tr>');
             foreach ($list->getFreeRooms() as $value) {
-                echo('<tr><td>'.$value->getRoom().'</td><td><img src="green.jpg"></td></tr>');
+                echo('<tr><td>'.$value->getRoomNum().'</td><td><img src="green.jpg"></td></tr>');
             }
             foreach ($list->getUsedRooms() as $value) {                
-                echo('<tr><td>'.$value->getRoom().'</td><td><img src="red.jpg"></td></tr>');
+                echo('<tr><td>'.$value->getRoomNum().'</td><td><img src="red.jpg"></td></tr>');
             }
             
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
             echo('<tr><th colspan=3>'. $list->getTimeSlot().'</th></tr>');
             foreach ($list->getGroups('t') as $value) {
-                echo('<tr><td>'.$value->getGroup().'</td><td>'.$value->getRoom().'</td></tr>');
+                echo('<tr><td>'.$value->getGroup().'</td><td>'.$value->getRoomNum().'</td></tr>');
             }
             echo('</table>');
 
@@ -48,7 +48,7 @@
             $scheduleRoom = new ScheduleRoom('S01');
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
-            echo('<tr><th colspan=3>'.$scheduleRoom->getRoom().'</th></tr>');
+            echo('<tr><th colspan=3>'.$scheduleRoom->getRoomNum().'</th></tr>');
             $last='08:00';
             foreach ($scheduleRoom->getSchedule() as $value) {
                 if ($last!=$value->getStart()){
@@ -147,7 +147,7 @@
              <?php
             foreach ($list->getFreeRooms() as $value) {
               echo(' <div class="tile tile-lime col-md-3 col-xs-12"  >');
-              echo('<h1> '.$value->getRoom(). '</h1>');
+              echo('<h1> '.$value->getRoomNum(). '</h1>');
                 if($value->getComputer()){
                   echo('<p><img src="computer.png"></p>');
                 }
@@ -156,7 +156,7 @@
             }
             foreach ($list->getUsedRooms() as $value) {
               echo(' <div class="tile tile-red col-md-3 col-xs-12"  >');
-              echo('<p> '.$value->getRoom(). '</p>');
+              echo('<p> '.$value->getRoomNum(). '</p>');
                 if($value->getComputer()){
                   echo('<p><img src="computer.png"></p>');
                 }

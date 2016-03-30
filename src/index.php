@@ -27,18 +27,18 @@ and open the template in the editor.
             echo('<tr><th colspan=3>'. $list->getTimeSlot().'</th></tr>');
             foreach ($list->getFreeRooms() as $value) {
                 if ($value->getComputer()==true) {
-                    echo('<tr><td>'.$value->getRoom().'</td><td><img src="computer.jpg"></td><td><img src="green.jpg"></td></tr>');
+                    echo('<tr><td>'.$value->getRoomNum().'</td><td><img src="computer.jpg"></td><td><img src="green.jpg"></td></tr>');
                 }
                 else {
-                    echo('<tr><td>'.$value->getRoom().'</td><td><img src="green.jpg"></td></tr>');
+                    echo('<tr><td>'.$value->getRoomNum().'</td><td><img src="green.jpg"></td></tr>');
                 }
             }
             foreach ($list->getUsedRooms() as $value) {                
                 if ($value->getComputer()==true) {
-                    echo('<tr><td>'.$value->getRoom().'</td><td><img src="computer.jpg"></td><td><img src="red.jpg"></td></tr>');
+                    echo('<tr><td>'.$value->getRoomNum().'</td><td><img src="computer.jpg"></td><td><img src="red.jpg"></td></tr>');
                 }
                 else {
-                    echo('<tr><td>'.$value->getRoom().'</td><td><img src="red.jpg"></td></tr>');
+                    echo('<tr><td>'.$value->getRoomNum().'</td><td><img src="red.jpg"></td></tr>');
                 }
             }
             
@@ -47,7 +47,7 @@ and open the template in the editor.
             echo('<tr><th colspan=3>'. $list->getTimeSlot().'</th></tr>');
             //parametre d'entrée de getGroup() : 't' pour trier en fonction des profs, 'g' pour trier en fonction des groupes
             foreach ($list->getGroups('g') as $value) {
-                echo('<tr><td>'.$value->getGroup().'</td><td>'.$value->getTeacher().'</td><td>'.$value->getRoom().'</td></tr>');
+                echo('<tr><td>'.$value->getGroup().'</td><td>'.$value->getTeacher().'</td><td>'.$value->getRoomNum().'</td></tr>');
             }
             echo('</table>');
           
@@ -55,7 +55,7 @@ and open the template in the editor.
             $scheduleRoom = new ScheduleRoom('S26');
             echo('<table>');
             echo('<tr><th colspan=3>'.$date.'</th></tr>');
-            echo('<tr><th colspan=3>'.$scheduleRoom->getRoom().'</th><th><img src="computer.jpg"></th></tr>');
+            echo('<tr><th colspan=3>'.$scheduleRoom->getRoomNum().'</th><th><img src="computer.jpg"></th></tr>');
             $last='08:00';
             foreach ($scheduleRoom->getSchedule() as $value) {
                 if ($last!=$value->getStart()){

@@ -16,34 +16,55 @@ $scheduleRoom = new ScheduleRoom($_GET['room']);
 		<link rel="stylesheet" type="text/css" href="dist/css/metro-bootstrap.min.css">
 		<link rel="stylesheet" href="styles/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="style.css">
+                <link rel="icon" href="agenda.png">
 	</head>
 	<body>
-	<p>
-		<ul class="nav nav-pills">
-				  <li class="active">
-					  <a href="rooms.php">Salles Libres</a></li>
-					  <li><a href="#">Profs</a></li>
+            <div class="container">
+              
+		<div class="row">
+                <div class="col-md-12 text-center">
+		<ul class="nav nav-pills pills-center">
+				  <li>
+                                      <a href="Rooms.php">Salles Libres</a></li>
+					  <li><a href="#">Profs</a>
 				  </li>
 		</ul>
-	</p>
-        <center><span id="jour"><?=$date?></span></center>
-	<center><span id="salle"><?=$_GET['room']?></span></center>
+                </div>
+                </div>
+                <div class="row">
+                <div id="jour" class="col-md-12 text-center"><?=$date?></div>
+                </div>
+                <div class="row">
+                    <?php
+                        if ($scheduleRoom->getSchedule()[0]->getComputer()) {
+                            $c="<img src=\"computer.jpg\">";
+                        }
+                        else {
+                            $c="";
+                        }
+                    ?>
+                    
+                <div id="salle" class="col-md-12 text-center"><?=$_GET['room']?>  <?=$c?></div>
+                </div>
+             
+            </div>
+
 	<div class='grid'>
 		<div class="row col-md-12">
-			<div id="room"style="position:relative;">
+			<div id="room">
 			<?php
 			$last='08:00';
 			foreach($scheduleRoom->getSchedule() as $schedule) {
 				if($last!=$schedule->getStart()) {
-					?><div class="tile tile-lime col-xs-6 col-xs-offset-3"  ><?php
+					?><div class="tile tile-lime col-xs-8 col-xs-offset-2"  ><?php
 					echo "<h1>".$last." - ".$schedule->getStart()."</h1></div>";
 				}
-				?><div class="tile tile-red col-xs-6 col-xs-offset-3"  ><?php
-				echo "<h1>".$schedule->getStart()." - ".$schedule->getEnd()."</h1></div>";
+				?><div class="tile tile-red col-xs-8 col-xs-offset-2"  ><?php
+				echo "<h1>".$schedule->getStart()." - ".$schedule->getEnd()."</h1><p class=\"group\">".$schedule->getGroup()."</p><p class=\"prof\">".$schedule->getTeacher()."</p></div>";
 				$last =$schedule->getEnd();
 			}
 			if($last != '21:00') {
-				echo "<div class=\"tile tile-lime col-xs-6 col-xs-offset-3\"  ><h1>".$last." - 21:00</h1></div>";
+				echo "<div class=\"tile tile-lime col-xs-8 col-xs-offset-2\"  ><h1>".$last." - 21:00</h1></div>";
 			}
 			?>
 			</div>

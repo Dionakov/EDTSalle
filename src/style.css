@@ -58,7 +58,7 @@ img {
 	padding-right: 0;
 
 }
-.grid .row .col-md-3, .grid .row .col-xs-6
+.grid .row .col-md-3, .grid .row .col-xs-8
 {
 	min-height: 150px;
 }
@@ -72,13 +72,7 @@ img {
 	position:relative;
 }
 
-#jour {
-
-	margin-bottom:50px;
-}
-
 #salle {
-    margin-bottom: 30px;
     font-size: 22pt;
     font-weight: bolder;
 }
@@ -93,4 +87,18 @@ img {
     .tile h1 {
         font-size: 34px;
     }
+}
+
+.pills-center {
+    display:inline-block;
+}
+
+.group {
+    font-family: "Segoe UI Light","Helvetica Neue","Segoe UI","Segoe WP",sans-serif;
+    font-size: 16pt;
+}
+
+.prof {
+    font-family: "Segoe UI Light","Helvetica Neue","Segoe UI","Segoe WP",sans-serif;
+    font-size: 18pt;
 }
