@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>Edt salles</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Le styles -->
-    <link rel="stylesheet" type="text/css" href="dist/css/metro-bootstrap.min.css">
-    <link rel="stylesheet" href="styles/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="icon" href="agenda.png">
-</head>
-
 <?php 
 require_once("ListClassRooms.php");
 
@@ -27,6 +12,11 @@ $lowestTime = $classRooms->getTimeSlot();
 	<head>
 		<meta charset="utf-8"/>
 		<title>EDT Salles</title>
+		<link rel="stylesheet" type="text/css" href="dist/css/metro-bootstrap.min.css">
+		<link rel="stylesheet" href="styles/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="icon" href="agenda.png">
+		
 	</head>
 	<body>
             <div class="container">
@@ -88,65 +78,144 @@ $lowestTime = $classRooms->getTimeSlot();
 		</div>
 
 		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
 		<script type="text/javascript">
-		
-			function refreshData(direction) {
+			$(document).bind("mobileinit", function () {
+				$.mobile.ajaxEnabled = false;
+			});
+		</script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript">
+			function getRoomList(time, callback) {
+				
+				$.post("ajax/roomList.php", {time:time}, function(list) { callback(JSON.parse(list)); });
+			}
+			function nextTimeSlot(time, callback) {
+				
+				$.post("ajax/nextTimeSlot.php", {time:time}, function(newTime) { callback(newTime); });
+			}
+			function previousTimeSlot(time, callback) {
+				
+				$.post("ajax/previousTimeSlot.php", {time:time}, function(newTime) { callback(newTime); });
+			}
 			
-				$.post(direction ? "ajax/previousTimeSlot.php" : "ajax/nextTimeSlot.php", {time:time}, function(data) { 
-
-				time = parseInt(data);
-					$.post("ajax/roomList.php", {time:time}, function(data2) { 
+			var currentRoomList = undefined;
+			var nextRoomList = undefined;
+			var previousRoomList = undefined;
+			
+			var currentTime = 0;
+			var nextTime = undefined;
+			var previousTime = undefined;
+			
+			nextTimeSlot(currentTime, function(newTime) {
+				nextTime = newTime;
+				getRoomList(newTime, function(list) { 
+				
+					nextRoomList = list;
+				});
+			});
+			getRoomList(currentTime, function(list) { currentRoomList = list; });
+			/*previousTimeSlot(currentTime, function(newTime) {
+				previousTime = newTime;
+				getRoomList(newTime, function(list) {
+					
+					previousRoomList = JSON.parse(list);
+				});
+			});*/
+			
+			function refreshRooms(direction) {
+				
+				if(currentTime === 0 && direction === false) return;
+				
+				if(direction === true) {
+					
+					previousTime = currentTime;
+					currentTime = nextTime;
+					nextTime = undefined;
+					
+					previousRoomList = currentRoomList;
+					currentRoomList = nextRoomList;
+					nextRoomList = undefined;
+					
+					nextTimeSlot(currentTime, function(newTime) {
+						nextTime = newTime;
+						getRoomList(newTime, function(list) { 
 						
-						data2 = JSON.parse(data2);
-						$("#rooms").animate({right:direction?"-1000px":"1000px", opacity:0.00}, 300, function() {
-						
-							$("#rooms").css("right", direction?"1000px":"-1000px");
-						
-							$("#rooms").html("");
-							freeRooms = data2.freeRooms;
-							occupiedRooms = data2.occupiedRooms;
-							for(var i = 0; i < freeRooms.length; i++) {
-								
-								
-								$("#rooms").append(freeRooms[i]);
-							}
-							for(var i = 0; i < occupiedRooms.length; i++) {
-							
-								$("#rooms").append(occupiedRooms[i]);
-							}
-							
-							$("#rooms").animate({right:"0px",opacity:1.00}, "slow");
-						});
-						
-						$("#horaire").animate({opacity:0.00}, 200, function() {
-							$("#horaire").html(data2.timeSlot);
-							$("#horaire").animate({opacity:1.00}, 200);
+							nextRoomList = list;
 						});
 					});
+				} else {
+					
+					nextTime = currentTime;
+					currentTime = previousTime;
+					previousTime = undefined;
+					
+					nextRoomList = currentRoomList;
+					currentRoomList = previousRoomList;
+					previousRoomList = undefined;
+					
+					previousTimeSlot(currentTime, function(newTime) {
+						previousTime = newTime;
+						getRoomList(newTime, function(list) {
+							
+							previousRoomList = list;
+						});
+					});
+				}
+				
+				$("#rooms").animate({right:direction?"1000px":"-1000px", opacity:0.00}, 300, function() {
+						
+					$("#rooms").css("right", direction?"-1000px":"1000px");
+				
+					$("#rooms").html("");
+
+					freeRooms = currentRoomList.freeRooms;
+					occupiedRooms = currentRoomList.occupiedRooms;
+					for(var i = 0; i < freeRooms.length; i++) {
+						
+						$("#rooms").append(freeRooms[i]);
+					}
+					for(var i = 0; i < occupiedRooms.length; i++) {
+					
+						$("#rooms").append(occupiedRooms[i]);
+					}
+					
+					$("#rooms").animate({right:"0px",opacity:1.00}, "slow");
 				});
-			}
-		
-			var time = 0;
+				
+				$("#horaire").animate({opacity:0.00}, 200, function() {
+					$("#horaire").html(currentRoomList.timeSlot);
+					$("#horaire").animate({opacity:1.00}, 200);
+				});
+			} 
+			
 			$(document).ready(function() {
 				
 				$("#tile_horaire_precedent").click(function() {
 					
-					refreshData(true);
-				});
-				$("body").on("swipeleft", function() {
-				
-					refreshData(false);
-				});
-				
-				$("body").on("swiperight", function() {
-					refreshData(true);
+					var b = $(this);
+					b.attr('disabled', 'disabled');
+					setTimeout(function() { b.removeAttr('disabled'); }, 2000);
+					refreshRooms(false);
 				});
 				$("#tile_horaire_suivant").click(function() {
 				
-					refreshData(false);
+					var b = $(this);
+					b.attr('disabled', 'disabled');
+					setTimeout(function() { b.removeAttr('disabled'); }, 2000);
+					refreshRooms(true);
+				});
+				$(document).on("swipeleft", function() {
+	
+					refreshRooms(true);
+				});
+				
+				$(document).on("swiperight", function() {
+	
+					refreshRooms(false);
 				});
 			});
+			
 		</script>
 
 	<style>

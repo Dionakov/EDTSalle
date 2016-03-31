@@ -12,14 +12,15 @@
             <?php 
             require_once("ListClassRooms.php");
 
-            $time = 0;
-
+			$time = 0;
             $classRooms = new ListClassRooms($time);
             $lowestTime = $classRooms->getTimeSlot();
-
+			date_default_timezone_set("Europe/Paris");
+			setlocale (LC_TIME, 'fr_FR.utf8','fra'); 
+			$date=strftime('%d ',time()). ucfirst(strftime('%B', time()));
             ?>
             <div class="container">
-              
+				
 		<div class="row">
                 <div class="col-md-12 text-center">
 		<ul class="nav nav-pills pills-center">
